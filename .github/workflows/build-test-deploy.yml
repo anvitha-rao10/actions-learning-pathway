@@ -63,9 +63,10 @@ jobs:
           node-version: '18.x'
 
       - name: Configure GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         with:
           static_site_generator: next
+          enablement: true
 
       - name: Install dependencies
         run: npm install
@@ -73,17 +74,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Dummy artifact upload to force v4
-        uses: actions/upload-artifact@v4
-        with:
-          name: dummy-artifact
-          path: ./out
-
       - name: Upload static site artifacts
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './out'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
