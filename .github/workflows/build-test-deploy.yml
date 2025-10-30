@@ -73,6 +73,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Dummy artifact upload to force v4
+        uses: actions/upload-artifact@v4
+        with:
+          name: dummy-artifact
+          path: ./out
+
       - name: Upload static site artifacts
         uses: actions/upload-pages-artifact@v2
         with:
